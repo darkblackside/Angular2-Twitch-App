@@ -1,0 +1,30 @@
+#leftnavi
+{
+  width: 20%;
+  height: 100vh;
+  background-color: #1976D2;
+  float: left;
+  color: white;
+}
+
+a
+{
+  padding: 10px;
+  width: 100%;
+  background-color: #1976D2;
+  color: white;
+  display: block;
+}
+
+a:hover
+{
+  padding: 10px;
+  width: 100%;
+  background-color: lightblue;
+  color: white;
+}
+
+.active
+{
+  background-color: lightblue;
+}

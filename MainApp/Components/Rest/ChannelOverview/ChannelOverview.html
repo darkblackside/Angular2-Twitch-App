@@ -1,0 +1,11 @@
+<button class="btn btn-success" (click)="addChannel()">Channel hinzufügen</button><br/>
+<div *ngFor="let channel of channels; let i = index">
+  <span *ngIf="!editChannel || activeChannel != i">{{channel}}</span>
+  <input *ngIf="editChannel && activeChannel == i" [(ngModel)]="editChannel" />
+  <button *ngIf="!editChannel || activeChannel != i" class="btn" (click)="editChannel = channel; activeChannel = i" title="Kanalnamen editieren">Edit</button>
+  <button *ngIf="editChannel && activeChannel == i" class="btn" (click)="overwrite(i); activeChannel = -1" title="Neuen Namen speichern">Okay</button>
+  <button *ngIf="editChannel && activeChannel == i" class="btn" (click)="editChannel = null; activeChannel = -1" title="Zurücksetzen">Abbruch</button>
+  <button *ngIf="defaultchannel==channel" class="btn" (click)="removeDefault()">Default entfernen</button>
+  <button *ngIf="defaultchannel!=channel" class="btn" (click)="editDefault(i)">Zu Default</button>
+  <button class="btn btn-danger" (click)="removeChannel(i)" title="Kanal löschen">X</button>
+</div>

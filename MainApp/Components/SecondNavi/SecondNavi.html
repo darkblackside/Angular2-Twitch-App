@@ -1,0 +1,5 @@
+<nav class="secondarynavi">
+  <div class="navipoint" *ngFor="let navipoint of secondNavi.Navipoints">
+    <a routerLink="{{navipoint.Link}}" [routerLinkActive]="['active']">{{navipoint.Text | uppercase}}</a>
+  </div>
+</nav>

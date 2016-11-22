@@ -1,0 +1,6 @@
+<div id="leftnavi" *ngIf="navigation">
+  <div class="navipoint" *ngFor="let navipoint of navigation.Navipoints">
+    <a routerLink="{{navipoint.Link}}" routerLinkActive #rla="routerLinkActive" [routerLinkActive]="['active']">{{rla.isActive?assign(navipoint.Child):null}}{{navipoint.Text | uppercase}}</a>
+  </div>
+</div>
+<navi-top></navi-top>

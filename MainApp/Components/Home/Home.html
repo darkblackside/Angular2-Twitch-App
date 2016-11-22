@@ -1,0 +1,18 @@
+<button type="button" class="btn btn-default" (click)="edit()">Zugangsdaten ändern</button>
+<button type="button" class="btn btn-default" (click)="reset()">Berechtigungen zurücksetzen</button>
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Berechtigungen vergeben</h4>
+    </modal-header>
+    <modal-body>
+        <iframe class="get-auth-frame embed-responsive-item" [src]="FullUrl | safe"></iframe>
+        <fieldset>
+          <legend>Auth-Token</legend>
+          <input [(ngModel)]="authToken" name="authtoken" type="" />
+        </fieldset>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="save(modal)">Ok</button>
+    </modal-footer>
+</modal>
