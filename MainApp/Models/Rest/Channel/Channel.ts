@@ -4,10 +4,11 @@ import { RestModel } from '../RestModel';
 import { Dictionary } from '../../Dictionary';
 
 import { ChannelResult } from './ChannelResult';
+import { ChannelRequest } from './ChannelRequest';
 
 export class ChannelGet implements RestModel
 {
-  public get Url() { return Settings.GetChannelsUrl(this.channelname) };
+  public get Url() { return Settings.GetChannelsUrl(this.channelname)+"?noCache="+Math.floor(Math.random()*100); };
   public get Method() { return RestMethod.GET };
   public HeaderValues = new Dictionary<string, string>();
 
@@ -23,12 +24,31 @@ export class ChannelGet implements RestModel
 
   public GetHeaderValues() : string
   {
-    let result = "?";
-    for(let key of this.HeaderValues.keys)
+    let result = "";
+
+    if(this.HeaderValues.keys.length > 0)
     {
-      result += key + "=" + this.HeaderValues.Get(key) + "&";
+      let result = "?";
+      for(let key of this.HeaderValues.keys)
+      {
+        result += key + "=" + this.HeaderValues.Get(key) + "&";
+      }
     }
 
     return result;
+  }
+}
+
+
+export class ChannelPut extends ChannelGet
+{
+  public get Method() { return RestMethod.PUT };
+  public Input: ChannelRequest;
+
+  public constructor(channelname: string, mature: boolean = null, status: string = null, game: string = null, delay: number = null, channel_feed_enabled: boolean = null, broadcaster_language: string = null)
+  {
+    super(channelname);
+
+    this.Input = new ChannelRequest(mature, status, game, delay, channel_feed_enabled, broadcaster_language);
   }
 }

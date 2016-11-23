@@ -1,8 +1,17 @@
-<div *ngIf="channel">
-  Ergebnis!
-  {{channel.Output.status}}
-  <div *ngIf="channel.Output">
-    Output!
-    {{channel.Output.status}}
-  </div>
+<div *ngIf="channel && channel.Output.name">
+  <h2>Daten von {{channel.Output.name}}</h2>
+  Alter: <button *ngIf="!channel.Output.mature" class="btn btn-info channelNotMature">0+</button>
+  <button *ngIf="channel.Output.mature" class="btn btn-danger channelMature">18+</button><br/>
+  Delay: <input [(ngModel)]="channel.Output.delay" /><br/>
+  Spiel: <input [(ngModel)]="channel.Output.game" /><br/>
+  Beschreibung: <input [(ngModel)]="channel.Output.status" /><br/>
+  Sprache: <input [(ngModel)]="channel.Output.broadcaster_language" /><br/>
+  Channel Feed: <button *ngIf="!channel.Output.channel_feed_enabled" class="btn btn-info" (click)="channel.Output.channel_feed_enabled = true">nein</button>
+  <button *ngIf="channel.Output.channel_feed_enabled" class="btn btn-info" (click)="channel.Output.channel_feed_enabled = false">ja</button><br/>
+  <span *ngIf="channel.Output.partner">Verzögerung: <input [(ngModel)]="channel.Output.delay" /><br/></span>
+  <button class="btn btn-success" (click)="saveChannel()">Speichern</button><button class="btn btn-warning" (click)="reloadChannel()">Abbrechen</button><br/><br/>
+
+</div>
+<div *ngIf="!channel || !channel.Output.name">
+  Loading...
 </div>

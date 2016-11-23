@@ -26,19 +26,20 @@ export class RestService
 
   private getCall<T extends RestModel>(arg: T) : Observable<T>
   {
-    return this.httpService.get(arg.Url + arg.GetHeaderValues(), this.getRequestOptions())
+    return this.httpService.get(arg.Url + arg.GetHeaderValues(), this.getRequestOptions(arg.Input))
                            .map(res => this.resOutputMapper<T>(res, arg));
   }
 
   private postCall<T extends RestModel>(arg: T) : Observable<T>
   {
-    return this.httpService.get(arg.Url + arg.GetHeaderValues(), this.getRequestOptions(arg.Input))
+    return this.httpService.post(arg.Url + arg.GetHeaderValues(), JSON.stringify(arg.Input), this.getRequestOptions())
                            .map(res => this.resOutputMapper<T>(res, arg));
   }
 
   private putCall<T extends RestModel>(arg: T) : Observable<T>
   {
-    return null;
+    return this.httpService.put(arg.Url + arg.GetHeaderValues(), JSON.stringify(arg.Input), this.getRequestOptions())
+                           .map(res => this.resOutputMapper<T>(res, arg));
   }
 
   private deleteCall<T extends RestModel>(arg: T) : Observable<T>
@@ -57,6 +58,7 @@ export class RestService
     var result = new Headers();
 
     result.append('Accept', Settings.RestAccepts);
+    result.append('Content-Type', Settings.ContentType);
     result.append('Client-ID', Settings.ClientID);
     result.append('Authorization', this.authService.Authorization);
 
@@ -69,7 +71,7 @@ export class RestService
     {
       return {
         headers: this.getHeaders(),
-        body: objToSend.toJson()
+        body: this.objectToBodyUrlEncoded(objToSend),
       };
     }
     return {

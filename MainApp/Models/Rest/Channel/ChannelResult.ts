@@ -4,7 +4,7 @@ export class ChannelResult
   public status: string;
   public broadcaster_language: string;
   public game: string;
-  public delay: number;
+  public delay: string;
   public language: string;
   public _id: number;
   public name: string;
@@ -22,4 +22,5 @@ export class ChannelResult
   public followers: number;
   public email: string;
   public stream_key: string;
+  public channel_feed_enabled: boolean;
 }
