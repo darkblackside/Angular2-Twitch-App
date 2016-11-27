@@ -12,7 +12,8 @@ import { ChannelResult } from '../../../Models/Rest/Channel/ChannelResult';
 @Component({
   selector: 'edit-channels',
   templateUrl: 'MainApp/Components/Rest/ChannelOverview/ChannelOverview.html',
-  styleUrls: [ 'node_modules/bootstrap/dist/css/bootstrap.min.css' ]
+  styleUrls: [ 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+               'MainApp/Components/Rest/ChannelOverview/channeloverview.css']
 })
 export class ChannelOverviewComponent implements OnInit
 {
@@ -31,6 +32,7 @@ export class ChannelOverviewComponent implements OnInit
   public addChannel(channelName = "EDITME")
   {
     this.channels.push(channelName);
+    this.saveChannels();
   }
 
   public removeChannel(channelindex: number)

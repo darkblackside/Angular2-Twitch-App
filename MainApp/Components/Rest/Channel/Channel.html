@@ -1,6 +1,2 @@
-<select [(ngModel)]="detailschannel" (ngModelChange)="setDefault">
-  <option *ngFor="let channel of channels" [ngValue]="channel">
-      {{channel}}
-  </option>
-</select>
+<channel-switcher (channelSwitched)="detailschannel = $event"></channel-switcher>
 <user-channel *ngIf="detailschannel" [channelName]="detailschannel"></user-channel>

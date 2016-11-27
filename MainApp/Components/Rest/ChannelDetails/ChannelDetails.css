@@ -1,0 +1,82 @@
+label
+{
+  width: 100%;
+}
+
+.half
+{
+  width: 100%;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.unimportant
+{
+  font-size: 8pt;
+  line-height: 8pt;
+}
+.unimportant input
+{
+  font-size: 8pt;
+  height: 20px;
+  line-height: 8pt;
+}
+
+.text-muted
+{
+  width: 100%;
+  display: inline-block;
+}
+
+.topinfo h2
+{
+  float: left;
+}
+.topinfo div
+{
+  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 25px;
+}
+.topinfo div i
+{
+  padding-right: 5px;
+}
+.topinfo
+{
+  clear: both;
+  width: 100%;
+}
+.topinfo .headerimage
+{
+  margin-top: 5px;
+}
+.topinfo .headerimage img
+{
+  width: auto;
+  height: 50px;
+}
+.topinfo .headerimage .big
+{
+  font-size: 40px;
+}

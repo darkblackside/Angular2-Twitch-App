@@ -1,9 +1,18 @@
-export class ChannelResult
+import { OutputToInput } from '../DecoratorHelper'
+import '../EditableDecorator';
+
+export class ChannelResult extends OutputToInput
 {
   public mature: boolean;
+  @Editable
   public status: string;
+  @Editable
   public broadcaster_language: string;
+  @Editable
   public game: string;
+  @SetIf("broadcaster_language")
+  public broadcaster_language_enabled: string;
+  @EditableIf("partner")
   public delay: string;
   public language: string;
   public _id: number;
@@ -20,7 +29,6 @@ export class ChannelResult
   public url: string;
   public views: number;
   public followers: number;
-  public email: string;
   public stream_key: string;
   public channel_feed_enabled: boolean;
 }

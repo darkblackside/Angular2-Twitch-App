@@ -26,6 +26,8 @@ export class RestService
 
   private getCall<T extends RestModel>(arg: T) : Observable<T>
   {
+
+
     return this.httpService.get(arg.Url + arg.GetHeaderValues(), this.getRequestOptions(arg.Input))
                            .map(res => this.resOutputMapper<T>(res, arg));
   }
@@ -44,13 +46,22 @@ export class RestService
 
   private deleteCall<T extends RestModel>(arg: T) : Observable<T>
   {
-    return null;
+    return this.httpService.delete(arg.Url + arg.GetHeaderValues(), this.getRequestOptions())
+                           .map(res => this.generateNull<T>());
   }
 
   private resOutputMapper<T extends RestModel>(res, toFill: T) : T
   {
-    toFill.Output = Object.assign(toFill.Output, res.json());
+    if(toFill)
+    {
+      toFill.Output = Object.assign(toFill.Output, res.json());
+    }
     return toFill;
+  }
+
+  private generateNull<T extends RestModel>() : T
+  {
+    return null;
   }
 
   private getHeaders() : Headers

@@ -35,6 +35,10 @@ export class MainNaviComponent implements OnInit
 
     channelNavi.Child = new Navigation("Secondary");
     channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/overview", "Übersicht"));
+    channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/feed", "Feed"));
+    channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/videos", "Videos"));
+    channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/follower", "Follower"));
+    channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/blocks", "Blacklist"));
     channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/edit", "Kanäle verwalten"));
   }
 

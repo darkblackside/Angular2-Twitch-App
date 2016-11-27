@@ -1,16 +1,80 @@
 <div *ngIf="channel && channel.Output.name">
-  <h2>Daten von {{channel.Output.name}}</h2>
-  Alter: <button *ngIf="!channel.Output.mature" class="btn btn-info channelNotMature">0+</button>
-  <button *ngIf="channel.Output.mature" class="btn btn-danger channelMature">18+</button><br/>
-  Delay: <input [(ngModel)]="channel.Output.delay" /><br/>
-  Spiel: <input [(ngModel)]="channel.Output.game" /><br/>
-  Beschreibung: <input [(ngModel)]="channel.Output.status" /><br/>
-  Sprache: <input [(ngModel)]="channel.Output.broadcaster_language" /><br/>
-  Channel Feed: <button *ngIf="!channel.Output.channel_feed_enabled" class="btn btn-info" (click)="channel.Output.channel_feed_enabled = true">nein</button>
-  <button *ngIf="channel.Output.channel_feed_enabled" class="btn btn-info" (click)="channel.Output.channel_feed_enabled = false">ja</button><br/>
-  <span *ngIf="channel.Output.partner">Verzögerung: <input [(ngModel)]="channel.Output.delay" /><br/></span>
-  <button class="btn btn-success" (click)="saveChannel()">Speichern</button><button class="btn btn-warning" (click)="reloadChannel()">Abbrechen</button><br/><br/>
+  <div class="topinfo clearfix">
+    <h2 class="clearfix">{{channel.Output.name}}</h2>
+    <div class="headerimage clearfix">
+      <a [href]="channel.Output.url | safe" target="_blank">
+        <img *ngIf="channel.Output.logo" [src]="channel.Output.logo | safe" alt="Zum channel" title="Zum Channel" />
+        <span *ngIf="!channel.Output.logo" class="glyphicon glyphicon-user big"></span>
+      </a>
+    </div>
+    <div class="followers clearfix"><i class="glyphicon glyphicon-user"></i>{{channel.Output.followers}}</div>
+    <div class="views clearfix"><i class="glyphicon glyphicon-eye-open"></i>{{channel.Output.views}}</div>
+    <div *ngIf="channel.Output.partner" class="partner clearfix"><i class="" title="User ist Twitch-Partner">€</i></div>
+  </div>
+  <h3>Editierbare Eigenschaften</h3>
+  <div class="form-group half clearfix">
+    <label for="game">
+        Spiel
+    </label>
+    <input class="form-control" [(ngModel)]="channel.Output.game" id="game" type="text" title="Welches Spiel willst du spielen?" placeholder="TestGame" />
+  </div>
 
+  <div class="form-group half clearfix">
+    <label for="status">
+        Titel
+    </label>
+    <input class="form-control" [(ngModel)]="channel.Output.status" id="status" type="text" title="Wie beschreibst du deinen Stream?" placeholder="Ein kurzer und knackiger Titel" />
+  </div>
+
+  <div class="form-group half unimportant clearfix">
+    <label for="language">
+        Sprache
+    </label>
+    <input class="form-control" [(ngModel)]="channel.Output.broadcaster_language" id="language" type="text" title="Welche Sprache sprichst du?" placeholder="de" />
+    <small class="form-text text-muted">Hier nur gültige Werte verwenden: de, en, es, it, ...</small>
+  </div>
+
+  <div class="form-group half unimportant clearfix">
+    <label for="language">
+        Delay
+    </label>
+    <input class="form-control" [disabled]="!channel.Output.partner" [(ngModel)]="channel.Output.delay" id="language" type="number" title="Wie viel delay soll dein Stream haben?" placeholder="0" />
+    <small class="form-text text-muted" *ngIf="!channel.Output.partner">Darf nur verändert werden, wenn du Twitch-Partner bist</small>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-success" (click)="saveChannel()"><i class="glyphicon glyphicon-ok"></i></button>&nbsp;<button class="btn btn-warning" (click)="reloadChannel()"><i class="glyphicon glyphicon-remove-sign"></i></button>
+  </div>
+
+  <h3>Status-Informationen</h3>
+  <div class="form-group">
+    <label for="old">
+        Zuschauer-Alter
+    </label>
+    <button class="btn channelNotMature" [ngClass]="{'btn-info': !channel.Output.mature}" id="old0" [disabled]="true">0+</button>
+    <button class="btn channelMature" [ngClass]="{'btn-danger': channel.Output.mature}" id="old18" [disabled]="true">18+</button>
+  </div>
+
+  <div class="form-group">
+    <label for="old">
+        Channel-Feed
+    </label>
+    <button class="btn btn-success" *ngIf="channel.Output.channel_feed_enabled" id="channelfeed" [disabled]="true">eingeschaltet</button>
+    <button class="btn" *ngIf="!channel.Output.channel_feed_enabled" id="channelfeed" [disabled]="true">ausgeschaltet</button>
+    <small class="form-text text-muted">Diese anzeige stimmt im Moment nicht, hier gibt es einen Bug in der Twitch-API</small>
+  </div>
+
+  <div class="form-group">
+    <label for="images">
+        Bilder
+    </label>
+    <div class="images">
+      <a *ngIf="channel.Output.logo" [href]="channel.Output.logo | safe" target="_blank">Logo</a>&nbsp;
+      <a *ngIf="channel.Output.video_banner" [href]="channel.Output.video_banner | safe" target="_blank">Video-Offline-Bild</a>&nbsp;
+      <a *ngIf="channel.Output.profile_banner" [href]="channel.Output.profile_banner | safe" target="_blank">Profilbanner</a>&nbsp;
+      <a *ngIf="channel.Output.banner" [href]="channel.Output.banner | safe" target="_blank">Banner (veraltet)</a>
+    </div>
+  </div>
 </div>
 <div *ngIf="!channel || !channel.Output.name">
   Loading...

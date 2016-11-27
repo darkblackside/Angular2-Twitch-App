@@ -8,3 +8,30 @@ input
 {
   width: 100%;
 }
+
+content
+{
+  width: 60%;
+  padding: 10px;
+  float: left;
+}
+
+.chat
+{
+  width: 20%;
+  float: right;
+  position: relative;
+}
+
+content
+{
+  max-height: calc(100% - 40px);
+  overflow: auto;
+}
+
+channel-switcher
+{
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}

@@ -48,6 +48,11 @@ export class Dictionary<T, U>
     }
   }
 
+  public get length()
+  {
+    return this.keys.length;
+  }
+
   private indexOf(key: T)
   {
     for(let i = 0; i < this.keys.length; i++)

@@ -1,0 +1,33 @@
+<channel-switcher (channelSwitched)="channelName = $event"></channel-switcher>
+<div *ngIf="feeds && feeds.Output">
+  <div class="newPostArea">
+    <button *ngIf="!newPostShow" (click)="newPostShow=true" class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i></button>
+    <div class="newpost" *ngIf="newPostShow">
+      <textarea [(ngModel)]="newFeed"></textarea><br/>
+      Auf Twitter posten? <input type="checkbox" [(ngModel)]="newFeedUseTwitter" /><br/>
+      <button class="btn btn-success" *ngIf="newFeed" (click)="NewPost()"><i class="glyphicon glyphicon-send"></i></button>
+      <button class="btn" *ngIf="!newFeed">Bitte Text ausfüllen</button>
+      <button class="btn btn-danger" (click)="newPostShow = false"><i class="glyphicon glyphicon-remove-sign"></i></button>
+    </div>
+  </div>
+  <div class="post clearfix" *ngFor="let post of feeds.Output.posts">
+    <div class="body" [innerHTML]="post.body | Urlify | TwitchMarkdown">
+    </div>
+    <div class="delete">
+      <button type="button" name="button" class="btn btn-danger" (click)="DeleteModal(post.id)"><i class="glyphicon glyphicon-trash"></i></button>
+    </div>
+  </div>
+</div>
+
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Post löschen</h4>
+    </modal-header>
+    <modal-body>
+      Wollen Sie den Post mit der ID {{postToDelete}} wirklich löschen?
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="DontDelete()">Nein</button>
+      <button type="button" class="btn btn-primary" (click)="DeletePost()">Ja</button>
+    </modal-footer>
+</modal>

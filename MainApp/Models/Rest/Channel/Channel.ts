@@ -45,10 +45,10 @@ export class ChannelPut extends ChannelGet
   public get Method() { return RestMethod.PUT };
   public Input: ChannelRequest;
 
-  public constructor(channelname: string, mature: boolean = null, status: string = null, game: string = null, delay: number = null, channel_feed_enabled: boolean = null, broadcaster_language: string = null)
+  public constructor(channelname: string, channel: ChannelResult)
   {
     super(channelname);
 
-    this.Input = new ChannelRequest(mature, status, game, delay, channel_feed_enabled, broadcaster_language);
+    this.Input = new ChannelRequest(channel);
   }
 }

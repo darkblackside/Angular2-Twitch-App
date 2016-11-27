@@ -1,3 +1,9 @@
 <navi-main></navi-main>
-<router-outlet>
-</router-outlet>
+<content>
+  <router-outlet>
+  </router-outlet>
+</content>
+<div class="chat">
+  <channel-switcher (channelSwitched)="currentchannel=$event"></channel-switcher>
+  <chat [Channel]="currentchannel"></chat>
+</div>

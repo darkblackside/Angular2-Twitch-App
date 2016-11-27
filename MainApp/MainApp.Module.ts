@@ -12,16 +12,22 @@ import { ChannelDetailsComponent }   from './Components/Rest/ChannelDetails/Chan
 import { MainNaviComponent }   from './Components/MainNavi/MainNavi.Component';
 import { SecondNaviComponent }   from './Components/SecondNavi/SecondNavi.Component';
 import { HomeComponent }   from './Components/Home/Home.Component';
+import { ChannelSwitcherComponent }   from './Components/ChannelSwitcher/ChannelSwitcher.Component';
+import { ChatComponent }   from './Components/Chat/Chat.Component';
+import { FeedComponent }   from './Components/Rest/Feed/Feed.Component';
 import { SafePipe } from './Pipes/SafePipe';
+import { UrlPipe } from './Pipes/UrlPipe';
+import { TwitchMarkdownPipe } from './Pipes/TwitchMarkdownPipe';
 
 import { RestService }   from './Services/Rest.Service';
 import { AuthorizationService }   from './Services/Authorization.Service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'channels/edit', component: ChannelOverviewComponent },
   { path: 'channels', redirectTo: 'channels/overview', pathMatch: 'full' },
   { path: 'channels/overview', component: ChannelComponent },
+  { path: 'channels/feed', component: FeedComponent },
+  { path: 'channels/edit', component: ChannelOverviewComponent },
   { path: 'home', component: HomeComponent }
 ]
 
@@ -41,7 +47,12 @@ const appRoutes: Routes = [
     SecondNaviComponent,
     HomeComponent,
     ChannelDetailsComponent,
-    SafePipe
+    ChannelSwitcherComponent,
+    ChatComponent,
+    FeedComponent,
+    UrlPipe,
+    SafePipe,
+    TwitchMarkdownPipe
   ],
   providers: [
     AuthorizationService,

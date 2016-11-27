@@ -1,0 +1,5 @@
+<select [(ngModel)]="detailschannel" (ngModelChange)="setDefault()" class="form-control">
+  <option *ngFor="let channel of channels" [ngValue]="channel">
+      {{channel}}
+  </option>
+</select>

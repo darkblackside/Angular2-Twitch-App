@@ -11,7 +11,8 @@ import { ChannelResult } from '../../../Models/Rest/Channel/ChannelResult';
 
 @Component({
   selector: 'user-channel',
-  templateUrl: 'MainApp/Components/Rest/ChannelDetails/ChannelDetails.html'
+  templateUrl: 'MainApp/Components/Rest/ChannelDetails/ChannelDetails.html',
+  styleUrls: ['MainApp/Components/Rest/ChannelDetails/ChannelDetails.css']
 })
 export class ChannelDetailsComponent
 {
@@ -37,19 +38,7 @@ export class ChannelDetailsComponent
 
   public saveChannel()
   {
-    if(!this.channel.Output.partner)
-    {
-      this.channel.Output.delay = null;
-    }
-
-    let mature = this.channel.Output.mature;
-    let status = this.channel.Output.status;
-    let game = this.channel.Output.game;
-    let delay = this.channel.Output.delay;
-    let channelFeedEnabled = this.channel.Output.channel_feed_enabled;
-    let language = this.channel.Output.broadcaster_language;
-
-    let channelPut = new ChannelPut(this._channelName, mature, status, game, delay, channelFeedEnabled, language);
+    let channelPut = new ChannelPut(this._channelName, this.channel.Output);
     this.restService.RestCall<ChannelPut>(channelPut).subscribe(res => this.addChannel(res));
   }
 

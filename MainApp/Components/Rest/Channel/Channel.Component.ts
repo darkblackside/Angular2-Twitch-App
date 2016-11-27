@@ -14,19 +14,7 @@ import { ChannelResult } from '../../../Models/Rest/Channel/ChannelResult';
   templateUrl: 'MainApp/Components/Rest/Channel/Channel.html',
   styleUrls: [ 'node_modules/bootstrap/dist/css/bootstrap.min.css' ]
 })
-export class ChannelComponent implements OnInit
+export class ChannelComponent
 {
-  public constructor(private authService: AuthorizationService, private restService: RestService) {}
-
-  public channels: Array<string>;
-  public defaultchannel: string;
   public detailschannel: string;
-
-  public ngOnInit()
-  {
-    this.channels = this.authService.Channels;
-    this.defaultchannel = this.authService.DefaultChannel;
-
-    this.detailschannel = this.defaultchannel;
-  }
 }
