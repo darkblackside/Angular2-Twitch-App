@@ -8,6 +8,7 @@ export class AuthorizationService
   private _authorization: string;
   private _defaultchannel: string;
   private _channelnames: Array<string>;
+  private _lastLatestFollower: Date;
 
   public constructor()
   {
@@ -101,6 +102,29 @@ export class AuthorizationService
     {
       this._defaultchannel = null;
       localStorage.removeItem("kraken.DefaultChannel");
+    }
+  }
+
+  public get LastLatestFollowerDate() : Date
+  {
+    if(!this._lastLatestFollower && localStorage.getItem("kraken.LastLatestFollowerDate"))
+    {
+      this._lastLatestFollower = JSON.parse(localStorage.getItem("kraken.LastLatestFollowerDate"));
+    }
+
+    return this._lastLatestFollower;
+  }
+  public set LastLatestFollowerDate(defaultvalue: Date)
+  {
+    if(defaultvalue != null)
+    {
+      localStorage.setItem("kraken.LastLatestFollowerDate", JSON.stringify(defaultvalue));
+      this._lastLatestFollower = defaultvalue;
+    }
+    else
+    {
+      this._lastLatestFollower = null;
+      localStorage.removeItem("kraken.LastLatestFollowerDate");
     }
   }
 }

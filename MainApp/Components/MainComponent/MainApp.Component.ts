@@ -6,6 +6,7 @@ import { AuthorizationService } from '../../Services/Authorization.Service'
 import { SafePipe } from '../../Pipes/SafePipe'
 
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'twitch-mainapp',
@@ -14,5 +15,11 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 })
 export class MainAppComponent
 {
+  public options = {
+    position: ["bottom", "left"],
+    timeOut: 5000,
+    lastOnBottom: true
+  }
 
+  public constructor(private notificationService: NotificationsService) {}
 }

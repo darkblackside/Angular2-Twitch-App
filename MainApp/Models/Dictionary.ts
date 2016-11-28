@@ -53,6 +53,21 @@ export class Dictionary<T, U>
     return this.keys.length;
   }
 
+  public GetAsHeaderValues() : string
+  {
+    let result = "";
+
+    if(this.keys.length > 0)
+    {
+      result = "?";
+      for(let key of this.keys)
+      {
+        result += key + "=" + this.Get(key) + "&";
+      }
+    }
+    return result;
+  }
+
   private indexOf(key: T)
   {
     for(let i = 0; i < this.keys.length; i++)

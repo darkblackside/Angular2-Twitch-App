@@ -1,0 +1,53 @@
+.follower
+{
+  border: 1px solid grey;
+  background-color: #EEEEEE;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+}
+
+.display-raster .follower
+{
+  position: relative;
+  float: left;
+  width: 300px;
+}
+
+.display-raster .follower::after
+{
+  clear: both;
+}
+
+.display-line .follower
+{
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.follower-name
+{
+  float: left;
+  width: 70%;
+}
+
+.followed-at
+{
+  float: left;
+  width: 30%;
+  text-align: right;
+}
+
+.clear
+{
+  clear: both;
+  width: 100%;
+  height: 0px;
+}
+
+.changedisplay
+{
+  margin-bottom: 10px;
+}

@@ -1,0 +1,27 @@
+<channel-switcher class="paddingbottom" (channelSwitched)="channelName = $event"></channel-switcher>
+<div class="paddingbottom"></div>
+<button class="btn" (click)="ShowBroadcasts()" [ngClass]="{'btn-success': !showBroadcasts}" [disabled]="showBroadcasts">Broadcasts</button> &nbsp; <button class="btn" (click)="ShowHighlights()" [ngClass]="{'btn-success': showBroadcasts}" [disabled]="!showBroadcasts">Highlights</button>
+<div *ngIf="videos && videos.Output">
+  <div class="video" *ngFor="let video of videos.Output.videos">
+    <figure>
+      <div class="image" (mouseleave)="video.showdetails = false">
+        <img class="preview" *ngIf="video.preview && !video.showdetails" [src]="video.preview | safe" (mouseenter)="video.showdetails = true" />
+        <img class="animated-preview" *ngIf="video.animated_preview && video.showdetails" [src]="video.animated_preview | safe" (mouseenter)="video.showdetails = true" />
+        <div class="placeholder animated-preview" *ngIf="!video.preview && !video.showdetails">Kein Kanalbild verfügbar</div>
+        <a [href]="video.url | safe" target="_blank" *ngIf="video.showdetails">
+          <div class="details" *ngIf="video.showdetails">
+            <div class="title-preview" *ngIf="video.showdetails">{{video.title}}</div>
+            <div class="game-preview" *ngIf="video.showdetails">{{video.game}}</div>
+            <div class="createdTime" *ngIf="video.showdetails"><span class="glyphicon glyphicon-time"></span> {{video.created_at | StringDateToVisibleDate}}</div>
+            <div class="views" *ngIf="video.showdetails"><span class="glyphicon glyphicon-eye-open"></span> {{video.views}}</div>
+            <div class="length" *ngIf="video.showdetails"><span class="glyphicon glyphicon-hourglass"></span> {{video.length | LengthFromSeconds}}</div>
+          </div>
+        </a>
+      </div>
+    </figure>
+    <div class="showdetails glyphicon glyphicon-cog" *ngIf="!video.showdetails" (click)="video.showdetails = true">
+    </div>
+    <div class="closedetails glyphicon glyphicon-remove" *ngIf="video.showdetails" (click)="video.showdetails = false">
+    </div>
+  </div>
+</div>
