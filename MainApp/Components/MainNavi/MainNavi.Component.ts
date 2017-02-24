@@ -30,8 +30,11 @@ export class MainNaviComponent implements OnInit
     this.navigation.Navipoints.push(startNavi);
     let channelNavi = new NavigationPoint("/channels", "Kanäle");
     this.navigation.Navipoints.push(channelNavi);
+    let liveNavi = new NavigationPoint("/live", "Live");
+    this.navigation.Navipoints.push(liveNavi);
 
     startNavi.Child = new Navigation("Secondary");
+    liveNavi.Child = new Navigation("Secondary");
 
     channelNavi.Child = new Navigation("Secondary");
     channelNavi.Child.Navipoints.push(new NavigationPoint("/channels/overview", "Übersicht"));

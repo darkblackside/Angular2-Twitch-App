@@ -61,4 +61,9 @@ export class HomeComponent implements OnInit
 
     this.initialized = true;
   }
+
+  public openWindow()
+  {
+    window.open(this.FullUrl, "Get OAuth Key", "width=600,height=400,status=yes,scrollbars=yes,resizable=yes");
+  }
 }

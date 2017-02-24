@@ -1,0 +1,14 @@
+<channel-switcher (channelSwitched)="channelSwitched($event)"></channel-switcher>
+<div class="content">
+  <button (click)="showStream = true" class="btn" *ngIf="!showStream">Zeige Stream</button>
+  <button (click)="showStream = false" class="btn" *ngIf="showStream">Verstecke Stream</button>
+  <iframe *ngIf="showStream"
+      [src]="GetChannelsUrl() | safe"
+      class="player"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen="true">
+  </iframe>
+  <h2>Online Users:</h2>
+  <online-users [channelname]="channelname"></online-users>
+</div>

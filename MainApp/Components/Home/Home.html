@@ -5,10 +5,12 @@
         <h4 class="modal-title">Berechtigungen vergeben</h4>
     </modal-header>
     <modal-body>
-        <iframe class="get-auth-frame embed-responsive-item" [src]="FullUrl | safe"></iframe>
+        <iframe class="get-auth-frame embed-responsive-item" [src]="FullUrl | safe"></iframe><br/>
+        <button (click)='openWindow()'>In einem Extra-Fenster öffnen</button>
         <fieldset>
           <legend>Auth-Token</legend>
           <input [(ngModel)]="authToken" name="authtoken" type="" />
+          <small class="form-text text-muted">Bitte hier den Token von oben beziehungsweise aus dem Popup eintragen</small>
         </fieldset>
     </modal-body>
     <modal-footer>

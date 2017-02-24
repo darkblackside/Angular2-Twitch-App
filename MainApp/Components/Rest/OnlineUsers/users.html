@@ -1,0 +1,26 @@
+<div *ngIf="chatters | async">
+  Chatters here
+  <div *ngIf="chatters.Output | async">
+    <div>Gesamt: {{followers.Output.chatter_count | async}}</div>
+    <div class="changedisplay">
+      <button class="btn glyphicon glyphicon-th" (click)="raster = true"></button>
+      <button class="btn glyphicon glyphicon-th-list" (click)="raster = false"></button>
+    </div>
+    <div class="display-raster" *ngIf="raster">
+      <div class="follower" *ngFor="let follower of followers.Output.follows">
+          <div class="follower-name">{{follower.user.display_name}} <span *ngIf="follower.notifications" class="glyphicon glyphicon-envelope" title="Benachrichtigungen aktiviert"></span></div>
+          <div class="followed-at">{{follower.created_at | StringDateToOnlyDate}}</div>
+      </div>
+    </div>
+    <div class="display-line" *ngIf="!raster">
+      <div class="follower" *ngFor="let follower of followers.Output.follows; let i = index">
+          <div class="follower-name"><span class="index">#{{i+1}}</span> {{follower.user.display_name}} <span *ngIf="follower.notifications" class="glyphicon glyphicon-envelope" title="Benachrichtigungen aktiviert"></span></div>
+          <div class="followed-at">{{follower.created_at | StringDateToOnlyDate}}</div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div *ngIf="followers.Output._cursor">
+      <button class="btn" (click)="NextPage()">Mehr laden</button> <button class="btn" *ngIf="followers.Output._total < 10000" (click)="LoadAll()">Alle Laden <span *ngIf="followers.Output._total > 1000">(kann einige Minuten dauern)</span></button>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,8 @@ import { ChatComponent }   from './Components/Chat/Chat.Component';
 import { FeedComponent }   from './Components/Rest/Feed/Feed.Component';
 import { VideosComponent }   from './Components/Rest/Videos/Videos.Component';
 import { FollowersComponent }   from './Components/Rest/Followers/Followers.Component';
+import { LiveOverviewComponent } from './Components/Rest/LiveOverview/LiveOverview.Component';
+import { OnlineUsersComponent } from './Components/Rest/OnlineUsers/OnlineUsers.Component';
 
 import { SafePipe, SafeStylePipe } from './Pipes/SafePipe';
 import { UrlPipe } from './Pipes/UrlPipe';
@@ -37,6 +39,8 @@ const appRoutes: Routes = [
   { path: 'channels/edit', component: ChannelOverviewComponent },
   { path: 'channels/videos', component: VideosComponent },
   { path: 'channels/follower', component: FollowersComponent },
+  { path: 'live', redirectTo: 'live/overview', pathMatch: 'full' },
+  { path: 'live/overview', component: LiveOverviewComponent },
   { path: 'home', component: HomeComponent }
 ]
 
@@ -62,6 +66,8 @@ const appRoutes: Routes = [
     FeedComponent,
     VideosComponent,
     FollowersComponent,
+    LiveOverviewComponent,
+    OnlineUsersComponent,
     UrlPipe,
     SafePipe,
     TwitchMarkdownPipe,
